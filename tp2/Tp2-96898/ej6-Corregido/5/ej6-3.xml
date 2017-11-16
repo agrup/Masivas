@@ -1,0 +1,40 @@
+<Schema name="New Schema2">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Clientes">
+    <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true">
+      <Table name="clientes" schema="public">
+      </Table>
+      <Level name="New Level 0" visible="true" column="codigo_cliente" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Productos">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="productos" schema="public">
+      </Table>
+      <Level name="productos" visible="true" column="codigo_producto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="tiempo">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="teimpo_d" schema="public">
+      </Table>
+      <Level name="New Level 0" visible="true" column="id_tiempo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="tp2rj6-3" visible="true" cache="true" enabled="true">
+    <Table name="detalleventas" schema="public">
+    </Table>
+    <DimensionUsage source="tiempo" name="tiempo" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Productos" name="Productos" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Clientes" name="Clientes" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="sumar" column="cant_vendida" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contar" column="cant_vendida" aggregator="count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

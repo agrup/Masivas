@@ -1,0 +1,12 @@
+<Schema name="tp5j5-5">
+  <Cube name="tp2ej6-5" visible="true" cache="true" enabled="true">
+    <Table name="medio" schema="public" alias="">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_tipo" name="New Dimension 0">
+      <Hierarchy name="tipo_medios" visible="true" hasAll="true" allMemberName="tipo_medios" primaryKey="id_" primaryKeyTable="tipo_medios">
+        <Table name="tipo_medios" schema="public" alias="">
+        </Table>
+      </Hierarchy>
+    </Dimension>
+  </Cube>
+</Schema>

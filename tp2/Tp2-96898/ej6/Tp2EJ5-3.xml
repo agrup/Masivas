@@ -1,0 +1,22 @@
+<Schema name="tp2Ej6_3">
+  <Cube name="Venta" visible="true" cache="true" enabled="true">
+    <Table name="Table" alias="">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" name="Cliente">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true">
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="Tiempo">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true">
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="Producto">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true">
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Unidades Vendidas" column="Detalle_ventas.Cant_vendidas" aggregator="count" visible="true">
+    </Measure>
+    <Measure name="Monto Total" column="Detalle_ventas.Cantidad_vendida" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

@@ -1,0 +1,23 @@
+1) Ecploracion de datos: 
+Tipo de datos: 
+Sepal.length numerico
+sepal.width numerico 
+petal.length numerico
+petal.width numerico
+species Factor 
+
+Cantidad de instancias 150
+
+50 instancias de cada clase, 50 setosa, 50 versicolor, 50 virginica
+
+2)
+media
+sepal length : 5.843333
+sepal.width: 3.057333
+petal.length: 3.758
+petal.width:1.1993333
+mediana
+sepal length : 5.8
+sepal.width: 
+petal.length: 
+petal.width:

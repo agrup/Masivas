@@ -1,0 +1,76 @@
+<Schema name="New Schema1">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Sexo">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="sexo_d" schema="public">
+      </Table>
+      <Level name="Sexo" visible="true" column="id_sexo" nameColumn="sexo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Ingreso">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="especialidades" schema="public">
+      </Table>
+      <Level name="Ingreso" visible="true" column="id" nameColumn="descripcion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Carrera">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="carrera" schema="public">
+      </Table>
+      <Level name="Carrera" visible="true" column="id_carrera" nameColumn="denominacion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Plan">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="plan_estudio" schema="public">
+      </Table>
+      <Level name="New Level 0" visible="true" column="id_plan" nameColumn="resolucion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Condicion">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="condicion" schema="public">
+      </Table>
+      <Level name="New Level 0" visible="true" column="id_condicion" nameColumn="condicion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="sede">
+    <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true">
+      <Table name="sede" schema="public">
+      </Table>
+      <Level name="Sede" visible="true" column="id_sede" nameColumn="sede" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" name="Estudiantes">
+    <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true">
+      <Table name="estudiantes" schema="public" alias="">
+      </Table>
+      <Level name="New Level 0" visible="true" column="id" nameColumn="nombre" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Tp2Ej1" visible="true" description="Cubo de estudiantes" cache="true" enabled="true">
+    <Table name="estudiantes" schema="public">
+    </Table>
+    <DimensionUsage source="sede" name="sede" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Sexo" name="sexo" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Carrera" name="carrera" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Ingreso" name="ingreso" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Plan" name="plan" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Condicion" name="Condicion" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Cantidad" column="id" aggregator="count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

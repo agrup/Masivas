@@ -1,0 +1,58 @@
+<Schema name="medios">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Tipos_de_medios">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="tipo_medios" schema="public">
+      </Table>
+      <Level name="tipo medio" visible="true" column="descripcion" nameColumn="descripcion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Especialidades">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="especialidades" schema="public">
+      </Table>
+      <Level name="Especialidad" visible="true" column="id" nameColumn="descripcion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="ciudad">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="ciudades" schema="public">
+      </Table>
+      <Level name="ciudad" visible="true" table="ciudades" column="nombre" nameColumn="nombre" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="medio">
+    <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true">
+      <Table name="medio" schema="public">
+      </Table>
+      <Level name="Medio" visible="true" column="id" nameColumn="id" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="New Dimension 4">
+    <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true">
+      <Table name="provincias" schema="public">
+      </Table>
+      <Level name="provincia" visible="true" column="nombre" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="tp2ej6-5" visible="true" cache="true" enabled="true">
+    <Table name="medio" schema="public">
+    </Table>
+    <DimensionUsage source="Tipos_de_medios" name="Tipo medios" visible="true" foreignKey="id_tipo" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Especialidades" name="Especialidad" visible="true" foreignKey="id_especialidad" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ciudad" name="Ubicacion" visible="true" foreignKey="id_ciudad" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="medio" name="Medio" visible="true" foreignKey="id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="New Dimension 4" name="prov" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Cantidad" column="id" aggregator="count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

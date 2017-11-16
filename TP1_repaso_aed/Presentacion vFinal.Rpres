@@ -1,0 +1,271 @@
+R$EDA
+========================================================
+autosize: true
+width: 1200
+height: 800
+
+(Análsis Exploratorio de Datos con R)
+
+Juan Manuel Fernandez - 2017
+
+Bases de Datos Masivas (11088)
+
+
+Conociendo los datos
+========================================================
+El análisis de datos exploratorio (EDA) tiene por objetivo identificar las principales características de un conjunto de datos mediante un número reducido de gráficos y/o valores.
+
+Consiste en:
+- Medidas cuantitativas de resumen: Métricas que explican propiedades del dataset.
+- Visualización de datos: transformaciones a un formato visual que permita identificar las características y relaciones entre los elementos del dataset.
+
+Sobre los datos
+========================================================
+Un dataset consiste en una representación de un conjunto de hechos/individuos a través de un conjunto de características.
+
+Para describir un dataset se analizan esas caracteristicas (variables) y sus relaciones.
+
+Las variables, a grandes rasgos pueden ser:
+- Cualitativas/Discretas. 
+- Cuantitativas/Continuas.
+
+Es importante conocer los tipos de datos, dado que ello nos permite decidir que tipo de análisis utilizar.
+
+Sobre la Herramienta -R-
+========================================================
+R es un lenguaje de programación con un enfoque al análisis estadístico.
+
+R es software libre y es uno de los lenguajes mas utilizados en investigación por la comunidad estadística y minería de datos.
+
+<center>
+![alt text](https://www.r-project.org/Rlogo.png "Logo R")
+</center>
+
+Sobre el dataset para la demostración
+========================================================
+<small>
+Iris: 150 instancias de flores de la planta iris en sus variedades:
+- Setosa,
+- Versicolor,
+- Virginica.
+
+Las caracteristicas son:
+```{r}
+names(iris)
+```
+</small>
+
+***
+<center>
+```{r}
+pie(table(iris$Species))
+```
+</center>
+***
+
+Conociendo el dataset
+========================================================
+autosize: true
+<small>
+Deciamos que para describir un dataset se analizan sus variables y las relaciones entre ellas.
+
+Nos interesa la distribución de la variable, que está determinada por los valores que toma esa variable y la frecuencia con la que los toma.
+A tener en cuenta: posición, dispersión y forma.
+
+Vemos los tipos de variables y un resumen de los valores:
+```{r}
+str(iris)
+```
+</small>
+
+Conociendo el dataset (++)
+========================================================
+
+Vemos el objeto y sus instancias:
+```{r eval=FALSE}
+View(iris) # Instancias del dataset
+```
+
+Mas datos:
+```{r}
+summary(iris)
+```
+
+Medidas de Posición
+========================================================
+
+Entre las medidas de posición mas conocidas se encuentran:
+- Media aritmética: Valor promedio entre los valores observados.
+- Moda: Valor que mas se repite entre las observaciones.
+- Mediana: Valor que divide al medio a las observaciones.
+
+<center>
+![alt text](C:/Users/Usuario/Pictures/posicion.png "Media/Mediana/Moda")
+</center>
+
+Medidas de Posición -Medidas Cuantitativas-
+========================================================
+
+Media aritmética:
+```{r}
+mean(iris$Sepal.Length)
+```
+
+Media truncada: (Elimina outliers)
+```{r}
+mean(iris$Sepal.Length, 0.05)
+```
+
+Medidas de Posición -Medidas Cuantitativas- (++)
+========================================================
+
+Mediana y Moda:
+```{r}
+median(iris$Sepal.Length)
+library(modeest)       #Cargar la libreria
+mfv(iris$Sepal.Length)  #Calcular la moda de un atributo
+```
+
+Medidas de Posición -Medidas Cuantitativas- (+++)
+========================================================
+
+Aplicando las medidas por especie:
+```{r}
+aggregate(Petal.Length ~ Species, data=iris, FUN=median)
+```
+
+Medidas de Posición -Análisis Gráfico-
+========================================================
+
+Para variables discretas: 
+- Gráfico de Torta
+```{r}
+pie(table(iris$Species))
+```
+***
+- Gráfico de Barras
+```{r}
+barplot(table(iris$Species)) 
+```
+
+Medidas de Posición -Analisis Grafico-
+========================================================
+<br>
+Para variables continuas: Histogramas
+<center>
+```{r}
+hist(iris$Sepal.Length)
+```
+</center>
+
+Medidas de Dispersion -Medidas Cuantitativas-
+========================================================
+Estas medidas nos dicen que tan distintas o similares tienden a ser las observaciones respecto a un valor particular (medida de tendencia central).
+
+Rango:
+```{r}
+max(iris$Sepal.Length)-min(iris$Sepal.Length)
+range(iris$Sepal.Length)
+```
+***
+Varianza (sumatoria de las diferencias cuadraticas con respecto a la media) y Desvio estandar (raiz cuadrada):
+```{r}
+var(iris$Sepal.Length)
+sd(iris$Sepal.Length)
+```
+
+Medidas de Dispersion -Medidas Cuantitativas- (++)
+========================================================
+Percentiles
+El percentil k es un valor tal que el p% de las observaciones se encuentran debajo de este y el (100-k))% por encima del mismo.
+
+Cuantil
+Caso particular del concepto anterior donde:
+- Q1: k=25,
+- Q2: k=50,
+- Q3: k=75,
+- Q4: k=100.
+
+***
+
+<small>
+```{r eval=FALSE}
+quantile(iris$Sepal.Length,seq(0,1,0.01))
+```
+```{r}
+quantile(iris$Sepal.Length,seq(0,1,0.25))
+```
+</small>
+
+Medidas de Dispersion -Analisis Grafico-
+========================================================
+<small>
+Diagramas de Cajas: Brindan informacion sobre
+- Posicion y dispersion,
+- Simetria de la distribucion,
+- Valores atipicos.
+<center>
+<br>
+![alt text](C:/Users/Usuario/Pictures/boxplot.png "boxplot")
+</center>
+
+***
+<center>
+```{r}
+boxplot(iris$Sepal.Length ~ iris$Species)
+```
+</center>
+</small>
+
+Medidas de Dispersion -Analisis Grafico- (++)
+========================================================
+<left>
+Diagramas de dispersion. Muestran la dispersión de valores observados de acuerdo 
+a dos variables.<center>
+</left>
+<center>
+```{r}
+plot(iris$Petal.Length, iris$Petal.Width,col=iris$Species)
+```
+</center>
+***
+<center>
+```{r}
+pairs(iris[,1:4],col=iris$Species)
+```
+</center>
+
+Medidas de Asociacion -Medidas Cuantitativas-
+========================================================
+Estas medidas son utilizadas para verificar como varía una variable con respecto a otra.<br /><br />
+Podemos calcular la covarianza (dependiente de la escala de las variables)
+```{r}
+cov(iris$Petal.Length,iris$Petal.Width)
+```
+O el coeficiente de correlación de Pearson (normalizado)
+```{r}
+cor(iris$Petal.Length,iris$Petal.Width)
+```
+
+Medidas de Asociacion -Analisis Gráfico-
+========================================================
+Para estudiar las relaciones entre variables, podemos utilizar:
+- Scatter Plot 2d y 3d (libreria scatterplot3d),
+- Gráfico de coordenadas paralelas,
+- Tablas de contingencia (variables discretas).
+
+Medidas de Asociacion -Analisis Gráfico- (++)
+========================================================
+
+Gráfico de coordenadas paralelas:
+```{r eval=FALSE}
+library(MASS)
+parcoord(iris[1:4], col=iris$Species,var.label=T)
+```
+***
+<center>
+```{r echo=FALSE}
+library(MASS)
+parcoord(iris[1:4], col=iris$Species,var.label=T)
+```
+</center>

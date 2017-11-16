@@ -1,0 +1,21 @@
+A,B,C,,,,,Reglas,,,,
+false,true,false,,a,"0,5",,a,"0,5",,a →b,"0,6"
+true,false,true,,b,"0,7",,b,"0,7",,a→c,"0,6"
+false,false,true,,c,"0,5",,c,"0,5",,b→c,"0,6"
+true,false,false,,ab,"0,3",,ab,"0,3",,a→ac,"0,6"
+true,true,true,,ac,"0,3",,ac,"0,3",,a→ab,"0,6"
+false,true,true,,bc,"0,3",,bc,"0,3",,a→bc,"0,4"
+true,true,false,,abc,"0,2",,,,,b→ab,"0,428571428571429"
+true,false,true,,,,,,,,b→ac,"0,285714285714286"
+true,false,false,,,,,,,,b→cb,"0,428571428571429"
+true,true,true,,,,,,,,c→ab,"0,4"
+,,,,,,,,,,c→ac,"0,6"
+,,,,,,,,,,c→bc,"0,6"
+,,,,,,,,,,ab→ac,"0,666666666666667"
+,,,,,,,,,,ab→,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+c,"son menores porque son dependientes de a, por lo tanto por la regla apriori tiene las mismas o menos apariciones",,,,,,,,,,
+d,Solo b seria una regla resultante,,,,,,,,,,

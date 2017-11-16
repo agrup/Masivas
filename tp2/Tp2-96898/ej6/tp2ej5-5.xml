@@ -1,0 +1,26 @@
+<Schema name="New Schema4">
+  <Cube name="tp2ej5" visible="true" cache="true" enabled="true">
+    <Table name="medios" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_medio" highCardinality="false" name="Medio">
+      <Hierarchy name="JerarquiaMedio" visible="true" hasAll="true">
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_ciudad" highCardinality="false" name="Ciudad">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true">
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Tipo">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true">
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Especialidad">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true">
+      </Hierarchy>
+    </Dimension>
+    <Measure name="cantidad de un tipo de medio" column="medios.tipo_medio" aggregator="count" description="Cuenta a cantidad de medios de algun tipo" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="New Cube 1" visible="true" cache="true" enabled="true">
+  </Cube>
+</Schema>

@@ -1,0 +1,16 @@
+<Schema name="CuboMedios">
+  <Cube name="Medios" visible="true" cache="true" enabled="true">
+    <Table name="medio" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_tipo" highCardinality="false" name="Tipos">
+      <Hierarchy name="Todos_los_tipos" visible="true" hasAll="true" allMemberName="Todos_los_tipos" primaryKey="id_">
+        <Table name="tipo_medios" schema="public">
+        </Table>
+        <Level name="Tipo_medio" visible="true" column="descripcion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Cantidad" column="id" datatype="String" aggregator="count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
